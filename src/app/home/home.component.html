@@ -1,0 +1,73 @@
+<body class="bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="card w-100 mt-2 mb-2 bg-primary">
+                <div class="card-body text-center text-light">
+                    <h2 class="card-title">Welcome to WorkFlow</h2>
+                    <p class="card-text">We Help you manage your Operations, Approvals and their various setups</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-group mr-2 ml-2">
+                    <div class="card bg-primary mr-1 ml-1">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body text-center text-light">
+                            <h3 class="card-title">lorem ipsum</h3>
+                            <p class="card-text">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card bg-primary mr-1 ml-1">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body text-center text-light">
+                            <h3 class=card-title>lorem ipsum</h3>
+                            <p class=card-text>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-primary text-light">
+                    <div class="card-header">
+                      Login Page
+                    </div>
+                    <div class="card-body">
+                      <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" [ngClass]="{'is-invalid': loginForm.get('username').errors
+                                && loginForm.get('username').touched
+                                && !loginForm.hasError('noValueUser')}"
+                                class="form-control" formControlName="username" id="username" placeholder="Enter Username">
+                            <div class="invalid-feedback" *ngIf="!loginForm.hasError('noValueUser')">Invalid Username!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" [ngClass]="{'is-invalid': loginForm.get('password').errors
+                                && loginForm.get('password').touched && !loginForm.hasError('noValuePass')}"
+                                class="form-control" formControlName="password" id="password" placeholder="Password">
+                            <div class="invalid-feedback" *ngIf="!loginForm.hasError('noValuePass')">Invalid password</div>
+                        </div>
+                        <!-- <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div> -->
+                          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-secondary">LOG IN</button>
+                      </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card w-100 mt-2 mb-2 bg-primary">
+                <div class="card-body text-center text-light">
+                    <h2 class="card-title">lorem ipsum</h2>
+                    <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>

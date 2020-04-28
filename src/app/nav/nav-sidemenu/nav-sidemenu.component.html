@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="card bg-primary mt-1">
+            <h3 class="card-title">Menu</h3>
+            <div class="card-body">
+                <!-- <span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+                    <div *ngFor="let nav of navItems">
+                        <i class="{{nav.iconName}} mr-2"></i>
+                        <a href id="basic-link" dropdownToggle (click)="false"
+                            aria-controls="basic-link-dropdown" >{{nav.displayName}}</a>
+                        
+                        <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+                            role="menu" aria-labelledby="basic-link">
+                          <li *ngFor="let child of nav.children">
+                            <a [routerLink]="[child.route]" class="dropdown-item">
+                                {{child.displayName}}
+                            </a>
+                          </li>
+                        </ul>
+                    </div>
+                </span> -->
+                <div *ngFor="let nav of navItems">
+                    <div class="menu-main">
+                        <a class="text-light menu-item" (click)="trigger()"><span>{{nav.displayName}}</span></a>
+                    </div>
+                    <div [ngClass]="{'fadein': menuChild === true, 'fadeout': menuChild === false}"
+                        *ngFor="let child of nav.children">
+                        <a [routerLink]="[child.route]">
+                            {{child.displayName}}
+                        </a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+</div>

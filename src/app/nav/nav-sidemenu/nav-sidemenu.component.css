@@ -1,0 +1,51 @@
+div.menu-main {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-color: #e6e6fa;
+    border-top-color : #e6e6fa;
+    border-left-color: #e6e6fa;
+    border-right-color: #e6e6fa;
+    max-height: 25px;
+}
+
+a.menu-item {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+/* div.expandable {
+    background: #fff;
+    overflow: hidden;
+    color: #000;   
+    line-height: 50px;
+  
+    transition: all .5s ease-in-out;
+    height: 0;
+}
+
+div.expandable:target {
+    height: 50px;
+} */
+
+.fadeout {
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+.fadein {
+    overflow: hidden;
+    color: #000;   
+    line-height: 50px;
+  
+    transition: all .5s ease-in-out;
+    height: 0;
+}
+
+.fadein:target {
+    height: 50px;
+  }
