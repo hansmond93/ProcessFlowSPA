@@ -7,7 +7,8 @@ import { NavItem } from 'src/app/_models/side-nav-item';
   styleUrls: ['./nav-sidemenu.component.css']
 })
 export class NavSidemenuComponent implements OnInit {
-  menuChild = true;
+  menuChild: any;
+  currentNav: any = null;
 
   items: string[] = [
     'The first choice!',
@@ -58,11 +59,19 @@ export class NavSidemenuComponent implements OnInit {
     this.navItems = this.navItems.filter(x => x);
   }
 
-  trigger() {
+  trigger(nav: any) {
+
     event.preventDefault();
-    console.log('menu child before: ', this.menuChild);
-    this.menuChild = !this.menuChild;
-    console.log('menu child after: ', this.menuChild);
+    if(this.currentNav === nav) {
+      this.menuChild = null;
+      this.currentNav = null;
+    }
+    else {
+      this.currentNav = nav;
+      var filter = this.navItems.filter(x => x.displayName === nav.displayName)
+      this.menuChild = filter[0];
+    }
+    
   }
 
 }

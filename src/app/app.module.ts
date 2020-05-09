@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { NavTopbarComponent } from './nav/nav-topbar/nav-topbar.component';
 import { HomeComponent } from './home/home.component';
@@ -16,12 +18,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { NavSidemenuComponent } from './nav/nav-sidemenu/nav-sidemenu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
+import { ProjectService } from './_services/project.service';
 
 export function tokenGetter() {
+  console.log(localStorage.getItem('token'));
   return localStorage.getItem('token');
 }
 
@@ -46,7 +51,10 @@ export function tokenGetter() {
     MatToolbarModule,
     MatNativeDateModule,
     MatIconModule,
+    MatTabsModule,
     MatListModule,
+    MatTableModule,
+    MatInputModule,
     BsDropdownModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -57,7 +65,8 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    ProjectService
   ],
   bootstrap: [AppComponent]
 })

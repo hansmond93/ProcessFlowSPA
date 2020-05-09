@@ -36,4 +36,10 @@ export class AuthService {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken.Username;
   }
+
+  getStaffId() : number {
+    const token = localStorage.getItem('token');
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return +decodedToken.StaffId;
+  }
 }

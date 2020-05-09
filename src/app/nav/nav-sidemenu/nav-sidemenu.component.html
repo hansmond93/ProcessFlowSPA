@@ -21,11 +21,11 @@
                 </span> -->
                 <div *ngFor="let nav of navItems">
                     <div class="menu-main">
-                        <a class="text-light menu-item" (click)="trigger()"><span>{{nav.displayName}}</span></a>
+                        <a class="text-light menu-item" (click)="trigger(nav)"><span>{{nav.displayName}}</span></a>
                     </div>
-                    <div [ngClass]="{'fadein': menuChild === true, 'fadeout': menuChild === false}"
+                    <div >
+                        <a [routerLink]="[child.route]" [ngClass]="{'fadein': menuChild === nav, 'fadeout': menuChild != nav}"
                         *ngFor="let child of nav.children">
-                        <a [routerLink]="[child.route]">
                             {{child.displayName}}
                         </a>
                     </div>

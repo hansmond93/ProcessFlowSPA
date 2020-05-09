@@ -32,18 +32,13 @@ div.expandable:target {
 } */
 
 .fadeout {
-    -moz-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    height: 0px;
+    display: none;
 }
+
 .fadein {
-    overflow: hidden;
-    color: #000;   
-    line-height: 50px;
-  
-    transition: all .5s ease-in-out;
-    height: 0;
+    display: block;
+    color: rgba(0,0,0,.87);
 }
 
 .fadein:target {
