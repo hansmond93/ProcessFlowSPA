@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,9 @@ export class HomeComponent implements OnInit {
                                                 ) { }
 
   ngOnInit(): void {
+    if(this.authService.loggedIn() === true) {
+      this.router.navigate(['/dashboard']);
+    }
     this.createLoginForm();
   }
 
@@ -30,9 +34,25 @@ export class HomeComponent implements OnInit {
   logIn() {
     if(this.loginForm.valid) {
       this.authService.logIn(this.loginForm.value).subscribe(()=> {
-        console.log('Logged In Successfully', this.authService.decodedToken);
+        // console.log('Logged In Successfully', this.authService.decodedToken);
+        Swal.fire({
+          icon: 'success',
+          title: 'Welcome!',
+          text: 'Logged in Successfully',
+        });
       }, error => {
-        console.log(error);
+        //console.log(error);
+        const err = error;
+        Swal.fire({
+          icon: 'error',
+          title: 'Ooops....',
+          text: err,
+          // footer: 'Please try again later'
+      });
+      if(this.authService.loggedIn() === true)
+      {
+        this.router.navigate(['/dashboard']);
+      }
       }, () => {
         this.router.navigate(['/dashboard']);
       });

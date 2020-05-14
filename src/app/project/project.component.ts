@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ProjectService } from '../_services/project.service';
 import { AuthService } from '../_services/auth.service';
 import { Project } from '../_models/project';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project',
@@ -17,11 +18,12 @@ export class ProjectComponent implements OnInit {
   projectTabDisabled: boolean = false;
   newProjectTabDisabled: boolean = true;
   newProjectForm: FormGroup;
-  displayedColumns: string[] = ['projectTitle', 'durationInMonths', 'proposedAmount', 'location', 'companyName'];
+  displayedColumns: string[] = ['projectTitle', 'durationInMonths', 'proposedAmount', 'location', 'companyName', 'approvalStatusId'];
 
   constructor(private projectService: ProjectService,
                       private fb: FormBuilder,
-                      private authService: AuthService
+                      private authService: AuthService,
+                      private sanitizer: DomSanitizer
                       ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class ProjectComponent implements OnInit {
   getAllProjectsByStaffId() {
     this.projectService.getAllProjectByUser(+this.authService.getStaffId()).subscribe((data) => {
       this.projects = data;
+      console.log(this.projects);
     }, (error) => {
       console.log(error);
     });
@@ -80,6 +83,7 @@ export class ProjectComponent implements OnInit {
         console.log(err);
       }, () => {
         this.getAllProjectsByStaffId(); //push into the array of project using javascript rather than calling the backend again
+        //make sure I chnage the tab to the new TAB and clear the Form
       });
     }
 
@@ -88,6 +92,28 @@ export class ProjectComponent implements OnInit {
   cancel() {
     //swal are u sure?
     this.newProjectForm.reset();
+  }
+
+  ProcessApproval(approvalStatusId: number) {
+    console.log(approvalStatusId);
+    var returnValue;
+    switch (approvalStatusId) {
+      case 0:
+        returnValue = this.sanitizer.bypassSecurityTrustHtml('<div style="background-color: orange; display: inline">Pending</div>');
+        break;
+      case 1:
+        returnValue = this.sanitizer.bypassSecurityTrustHtml('<div style="background-color: yellow; display: inline">Processing</div>');
+      case 2:
+        returnValue = this.sanitizer.bypassSecurityTrustHtml('<div style="background-color: green; display: inline">Approved</div>');
+      case 3:
+          returnValue = this.sanitizer.bypassSecurityTrustHtml('<div style="background-color: red; display: inline">Rejected</div>');
+      case 4:
+          returnValue = this.sanitizer.bypassSecurityTrustHtml('<div style="background-color: purple; display: inline">Referred</div>');
+      default:
+        break;
+    }
+
+    return returnValue;
   }
 
 

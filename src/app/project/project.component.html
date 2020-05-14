@@ -48,7 +48,18 @@
                                     <ng-container matColumnDef="companyName">
                                         <th mat-header-cell *matHeaderCellDef class="text-primary"> Company </th>
                                         <td mat-cell *matCellDef="let project" class="text-primary"> {{project.companyName}} </td>
-                                      </ng-container>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="approvalStatusId">
+                                      <th mat-header-cell *matHeaderCellDef class="text-primary"> Approval Status </th>
+                                      <td mat-cell *matCellDef="let project" class="text-primary" [innerHTML]="ProcessApproval(project.approvalStatusId)"></td>
+                                    </ng-container>
+
+                                    <!-- <ng-container>
+                                      <th mat-header-cell *matHeaderCellDef class="text-primary">Approval</th>
+                                      <td mat-cell *matCellDef="let project" class="text-primary"><a>Go For Approval</a></td>
+                                    </ng-container> -->
+                                    
                                   
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

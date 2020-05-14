@@ -11,4 +11,5 @@ export interface Project {
         contactAddress: string;
         companyName: string;
         companyEmail: string;
+        approvalStatusId: number;
 }

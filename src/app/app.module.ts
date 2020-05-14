@@ -8,10 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
-
-import { NavTopbarComponent } from './nav/nav-topbar/nav-topbar.component';
-import { HomeComponent } from './home/home.component';
-import { AuthService } from './_services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,13 +16,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+
+import { NavTopbarComponent } from './nav/nav-topbar/nav-topbar.component';
+import { HomeComponent } from './home/home.component';
+import { AuthService } from './_services/auth.service';
 import { NavSidemenuComponent } from './nav/nav-sidemenu/nav-sidemenu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectService } from './_services/project.service';
+import { DashboardService } from './_services/dashboard.service';
+import { DashboardResolver } from './_resolvers/dashboard.resolver';
 
 export function tokenGetter() {
-  console.log(localStorage.getItem('token'));
+  //console.log(localStorage.getItem('token'));
   return localStorage.getItem('token');
 }
 
@@ -56,6 +59,7 @@ export function tokenGetter() {
     MatTableModule,
     MatInputModule,
     BsDropdownModule.forRoot(),
+    SweetAlert2Module.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -66,7 +70,9 @@ export function tokenGetter() {
   ],
   providers: [
     AuthService,
-    ProjectService
+    ProjectService,
+    DashboardService,
+    DashboardResolver,
   ],
   bootstrap: [AppComponent]
 })
